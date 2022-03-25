@@ -1,0 +1,9 @@
+{
+	"name": "Tabletop Helper",
+	"short_name": "🖋",
+	"theme_color": "#000000",
+	"background_color": "#ffffff",
+	"display": "minimal-ui",
+	"scope": "/",
+	"start_url": "/"
+}
