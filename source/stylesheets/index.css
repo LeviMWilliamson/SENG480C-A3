@@ -1,0 +1,21 @@
+#include "../headers/definitions.h"
+#include "./sidebar.css"
+body {
+	margin: 0;
+	padding: 0;
+	--background-color: _DEFAULT_BACKGROUND_COLOR;
+	--theme-color: _DEFAULT_THEME_COLOR;
+}
+
+button:not(:disabled), input[type='checkbox'] {
+	cursor: pointer;
+}
+
+header {
+	position: sticky;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+}
+header > * { margin: 0; }
+header > h1 { padding: 1rem; }

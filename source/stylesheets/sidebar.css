@@ -1,0 +1,67 @@
+/* separate header from sidebar */
+.sidebar {
+	right: 0;
+	position: absolute;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+	align-items: stretch;
+
+	background: transparent;
+}
+
+/* hide checkbox, cover with label */
+input#toggle-categories[type='checkbox'] {
+	display: none;
+}
+label[for='toggle-categories'] {
+	box-sizing: border-box;
+	height: 5rem;
+
+	display: flex;
+	align-items: center;
+
+	border-radius: 0 0 0 1rem;
+	padding: 1rem;
+
+	background: var(--theme-color);
+	color: var(--background-color);
+	font-size: 2rem;
+
+	cursor: pointer;
+
+	z-index: 2;
+}
+
+input#toggle-categories[type='checkbox']:checked ~ button {
+	transition: all .5s;
+	visibility: visible;
+	transform: translateY(0);
+}
+input#toggle-categories[type='checkbox']:checked ~ label {
+	border-radius: 0 0 0 0;
+}
+.sidebar > button {
+	transition: all .5s;
+	transform: translateY(-100vh);
+	grid-column: 1 / span 2;
+
+	border: 1px solid _DEFAULT_THEME_COLOR;
+	padding: 1rem;
+	text-align: left;
+
+	background: var(--theme-color);
+	color: var(--background-color);
+
+	z-index: 1;
+}
+.sidebar > button:last-of-type {
+	border-radius: 0 0 0 1rem;
+	box-shadow: 4px 2px 4px 4px rgba(0,0,0,.4);
+}
+.sidebar > button:hover {
+	transition: all .4s;
+	background: var(--background-color);
+	color: var(--theme-color);
+}
