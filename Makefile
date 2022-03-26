@@ -20,3 +20,11 @@ clean:
 .PHONY: run
 run: all
 	@cd distribution && python3 -m http.server
+
+.PHONY: watch
+watch: all
+	while true do; do \
+		make clean; \
+		make all; \
+		inotifywait -qre close_write .; \
+	done
