@@ -1,0 +1,15 @@
+form.line-form {
+	display: grid;
+	grid-template-columns: auto 1fr;
+
+	padding: 1rem;
+}
+
+form.line-form label {
+	margin: .75rem 0;
+}
+form.line-form textarea { resize: vertical; }
+form.line-form input, form.line-form textarea {
+	margin: .75rem 0;
+	max-width: 50rem;
+}

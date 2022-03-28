@@ -1,0 +1,32 @@
+<template id='_CATEGORY_ITEMS_ID'>
+	<script src='scripts/items.js' type='module'></script>
+	<h2>Items</h2>
+	<section>
+		<details>
+			<summary>New Item</summary>
+			<form id='item-creation' class='line-form'>
+				<label for='name'>Name</label>
+				<input type='text' name='name' placeholder='Name' required/>
+
+				<label for='description'>Description</label>
+				<textarea name='description' placeholder='Description' required></textarea>
+
+				<label for='price'>Price</label>
+				<input type='number' name='price' placeholder='Price' required>
+				<button id='create-item' class='create' type='button'>_CREATE_ITEM_LABEL</button>
+			</form>
+		</details>
+		<dl id='items'></dl>
+	</section>
+</template>
+<template id='items-list-item-template'>
+	<dt>
+		<b slot='name'></b>
+		<i slot='price'></i>_DEFAULT_CURRENCY
+	</dt>
+	<dd>
+		<p slot='description'></p>
+		<!--<button class='edit'>_EDIT_ITEM_LABEL</button>-->
+		<button class='delete'>_DELETE_ITEM_LABEL</button>
+	</dd>
+</template>

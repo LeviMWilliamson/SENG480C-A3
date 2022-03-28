@@ -1,14 +1,48 @@
-#include "../headers/definitions.h"
 #include "./sidebar.css"
+#include "./footer.css"
+#include "./line-form.css"
+
 body {
+	display: flex;
+	flex-direction: column;
+
 	margin: 0;
 	padding: 0;
+	min-height: 100vh;
 	--background-color: _DEFAULT_BACKGROUND_COLOR;
 	--theme-color: _DEFAULT_THEME_COLOR;
 }
 
 button:not(:disabled), input[type='checkbox'] {
 	cursor: pointer;
+}
+
+button.create, button.delete {
+	transition: all .2s;
+	border: 1px solid var(--theme-color);
+	border-radius: 1rem;
+	padding: 0.5rem 1rem;
+	background-color: var(--theme-color);
+	color: var(--background-color);
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+button.create:hover, button.delete:hover {
+	transition: all .2s;
+	background-color: var(--background-color);
+	color: var(--theme-color);
+}
+
+details {
+	border: 1px solid var(--theme-color);
+	max-width: 50rem;
+}
+
+summary {
+	cursor: pointer;
+	padding: 1rem;
+	font-variant: small-caps;
+	background: var(--theme-color);
+	color: var(--background-color);
 }
 
 header {
@@ -19,3 +53,7 @@ header {
 }
 header > * { margin: 0; }
 header > h1 { padding: 1rem; }
+
+main {
+	padding: 1rem;
+}

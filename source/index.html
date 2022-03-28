@@ -1,4 +1,3 @@
-#include "headers/definitions.h"
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,21 +24,23 @@
 			<nav class='sidebar'>
 				<input id='toggle-categories' type='checkbox'/>
 				<label for='toggle-categories'>_TOGGLE_CATEGORY_MENU</label>
-				<button>_CATEGORY_ITEMS</button>
-				<button>_CATEGORY_CHARACTERS</button>
-				<button>_CATEGORY_CREATURES</button>
-				<button>_CATEGORY_ENVIRONMENTS</button>
-				<button>_CATEGORY_SCRIPTS</button>
-				<button>_CATEGORY_TRIGGERS</button>
+				<button data-category='_CATEGORY_ITEMS_ID'>_CATEGORY_ITEMS_LABEL</button>
+				<button data-category='_CATEGORY_CHARACTERS_ID'>_CATEGORY_CHARACTERS_LABEL</button>
+				<button data-category='_CATEGORY_CREATURES_ID'>_CATEGORY_CREATURES_LABEL</button>
+				<button data-category='_CATEGORY_ENVIRONMENTS_ID'>_CATEGORY_ENVIRONMENTS_LABEL</button>
+				<button data-category='_CATEGORY_SCRIPTS_ID'>_CATEGORY_SCRIPTS_LABEL</button>
+				<button data-category='_CATEGORY_TRIGGERS_ID'>_CATEGORY_TRIGGERS_LABEL</button>
 			</nav>
 		</header>
 		<main>
 		</main>
 		<footer>
+			<h2>_DEFAULT_ICON _DEFAULT_TITLE</h2>
 			<address>
 				<p><a href='mailto:_CONTACT_EMAIL'>_CONTACT_EMAIL</a></p>
 				<p><a href='tel:_CONTACT_PHONE'>_CONTACT_PHONE</a></p>
 			</address>
 		</footer>
+#include "headers/templates.h"
 	</body>
 </html>
