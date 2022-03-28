@@ -5,13 +5,13 @@ SOURCES := $(shell find $(SOURCE_DIRECTORY) -type f ! -wholename *.h)
 TARGETS := $(patsubst $(SOURCE_DIRECTORY)%,$(TARGET_DIRECTORY)%,$(SOURCES))
 
 PREPROCESSOR := $(shell which cpp)
-CPPFLAGS := -traditional-cpp -P -undef -Wundef -std=c99 -nostdinc -Wtrigraphs -fdollars-in-identifiers
+CPPFLAGS :=  -P -undef -Wundef -nostdinc -traditional-cpp -trigraphs -fdollars-in-identifiers -C -include source/headers/definitions.h
 
 all: $(TARGETS)
 
 $(TARGETS): $(SOURCES)
 	@mkdir -p $(@D)
-	$(PREPROCESSOR) $(CPPFLAGS) -C $(patsubst $(TARGET_DIRECTORY)%,$(SOURCE_DIRECTORY)%,$@) > $@
+	$(PREPROCESSOR) $(CPPFLAGS) $(patsubst $(TARGET_DIRECTORY)%,$(SOURCE_DIRECTORY)%,$@) > $@
 
 .PHONY: clean
 clean:
@@ -19,7 +19,7 @@ clean:
 
 .PHONY: run
 run: all
-	@cd distribution && python3 -m http.server
+	@cd $(TARGET_DIRECTORY) && python3 -m http.server
 
 .PHONY: watch
 watch: all
