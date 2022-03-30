@@ -1,7 +1,0 @@
-#include "../templates/tags.html"
-#include "../templates/items.html"
-#include "../templates/characters.html"
-#include "../templates/creatures.html"
-#include "../templates/environments.html"
-#include "../templates/scripts.html"
-#include "../templates/triggers.html"
