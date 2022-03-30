@@ -1,3 +1,4 @@
+#include "../templates/tags.html"
 #include "../templates/items.html"
 #include "../templates/characters.html"
 #include "../templates/creatures.html"

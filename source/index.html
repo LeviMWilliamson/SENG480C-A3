@@ -5,10 +5,10 @@
 		<meta charset='utf-8'/>
 		<!-- responsive layout -->
 		<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'/>
-		<meta name='theme-color' content='_DEFAULT_THEME_COLOR'/>
+		<meta name='theme-color' content='black'/>
 
 		<!-- tab title -->
-		<title>_DEFAULT_TITLE</title>
+		<title>Paper</title>
 
 		<!-- external -->
 		<link rel='icon' href='favicon.svg'/>
@@ -16,31 +16,102 @@
 		<link rel='stylesheet' href='stylesheets/index.css'/>
 
 		<!-- scripts -->
-		<script src='scripts/index.js' async defer></script>
+		<script src='scripts/index.js' type='module' async defer></script>
 	</head>
 	<body>
 		<header>
-			<h1>_DEFAULT_ICON _DEFAULT_TITLE</h1>
+			<a class='unset' href='/'>
+				<h1>📜 Paper</h1>
+			</a>
 			<nav class='sidebar'>
 				<input id='toggle-categories' type='checkbox'/>
-				<label for='toggle-categories'>_TOGGLE_CATEGORY_MENU</label>
-				<button data-category='_CATEGORY_ITEMS_ID'>_CATEGORY_ITEMS_LABEL</button>
-				<button data-category='_CATEGORY_CHARACTERS_ID'>_CATEGORY_CHARACTERS_LABEL</button>
-				<button data-category='_CATEGORY_CREATURES_ID'>_CATEGORY_CREATURES_LABEL</button>
-				<button data-category='_CATEGORY_ENVIRONMENTS_ID'>_CATEGORY_ENVIRONMENTS_LABEL</button>
-				<button data-category='_CATEGORY_SCRIPTS_ID'>_CATEGORY_SCRIPTS_LABEL</button>
-				<button data-category='_CATEGORY_TRIGGERS_ID'>_CATEGORY_TRIGGERS_LABEL</button>
+				<label for='toggle-categories'>≡</label>
+				<button data-category='tags'>🔖 Tags</button>
+				<button data-category='items'>📦 Items</button>
+				<button data-category='characters'>🧝‍♂️ Characters</button>
+				<button data-category='creatures'>🐉 Creatures</button>
+				<button data-category='environments'>🏠 Environments</button>
+				<button data-category='scripts'>📃 Scripts</button>
+				<button data-category='triggers'>🔔 Triggers</button>
 			</nav>
 		</header>
 		<main>
+			<p><b>Paper</b> is a tool that allows pen-and-paper role-playing game enthusiasts to easily create scenarios!</p>
+			<p>To get started, click on the side menu.</p>
+			<br/>
+			<p>Let's get your <i>party</i> started! 🎈🎉</p>
 		</main>
 		<footer>
-			<h2>_DEFAULT_ICON _DEFAULT_TITLE</h2>
+			<h2>📜 Paper</h2>
 			<address>
 				<p><a href='mailto:_CONTACT_EMAIL'>_CONTACT_EMAIL</a></p>
 				<p><a href='tel:_CONTACT_PHONE'>_CONTACT_PHONE</a></p>
 			</address>
 		</footer>
-#include "headers/templates.h"
+
+		<!-- templates -->
+		<template id='items-template'>
+			<h2>Items</h2>
+			<details>
+				<summary>New Item</summary>
+				<form id='item-creation' class='line-form'>
+					<label for='name'>Name</label>
+					<input type='text' name='name' placeholder='Name' required/>
+		
+					<label for='description'>Description</label>
+					<textarea name='description' placeholder='Description' required></textarea>
+		
+					<label for='price'>Price</label>
+					<input type='number' name='price' placeholder='Price' required>
+					<button id='create-item-button' class='create' type='button'>📦 Create ItemL</button>
+				</form>
+			</details>
+			<dl id='items-list'></dl>
+		</template>
+		<template id='items-list-item-template'>
+			<dt>
+				<b slot='name'></b>
+				<i slot='price'></i>gp
+			</dt>
+			<dd>
+				<p slot='description'></p>
+				<!--<button class='edit'>_EDIT_ITEM_LABEL</button>-->
+				<button slot='id' class='delete'>❌ Delete Item</button>
+			</dd>
+		</template>
+		<template id='tags-template'>
+			<h2>Tags</h2>
+			<button id='create-tag-button' class='create'>🔖 Create Tag</button>
+			<dialog id='modify-tag-dialog'>
+				<h3 slot='dialog-caption'></h3>
+				<form method='dialog'>
+					<label>Name</label>
+					<input type='text' name='name' required>
+					<label>Description</label>
+					<textarea name='description'></textarea>
+					<label>Color</label>
+					<input type='color' name='color' required>
+					<br/>
+					<menu>
+						<button id='confirm-dialog-button' class='dialog' value='default'>🔨 Confirm</button>
+						<button class='dialog' value='cancel' formnovalidate>🚫 Cancel</button>
+					</menu>
+				</form>
+			</dialog>
+			<dl id='tags-list'></dl>
+		</template>
+		<template id='tags-list-item-template'>
+			<dt class='tag'>
+				<input slot='color' type='color' readonly disabled/>
+				<b slot='name'></b>
+			</dt>
+			<dd>
+				<p slot='description'></p>
+				<menu>
+					<button slot='id' class='edit'>📝 Edit Tag</button>
+					<button slot='id' class='delete'>❌ Delete Tag</button>
+				</menu>
+			</dd>
+		</template>
 	</body>
 </html>

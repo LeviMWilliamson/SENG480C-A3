@@ -1,7 +1,3 @@
-#include "./sidebar.css"
-#include "./footer.css"
-#include "./line-form.css"
-
 body {
 	display: flex;
 	flex-direction: column;
@@ -9,16 +5,17 @@ body {
 	margin: 0;
 	padding: 0;
 	min-height: 100vh;
-	--background-color: _DEFAULT_BACKGROUND_COLOR;
-	--theme-color: _DEFAULT_THEME_COLOR;
+	--background-color: white;
+	--theme-color: black;
 }
 
 button:not(:disabled), input[type='checkbox'] {
 	cursor: pointer;
 }
 
-button.create, button.delete {
+button.create, button.delete, button.edit, button.dialog {
 	transition: all .2s;
+	margin-right: .5rem;
 	border: 1px solid var(--theme-color);
 	border-radius: 1rem;
 	padding: 0.5rem 1rem;
@@ -26,11 +23,21 @@ button.create, button.delete {
 	color: var(--background-color);
 	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
-button.create:hover, button.delete:hover {
+button.create:hover, button.delete:hover, button.edit:hover, button.dialog:hover {
 	transition: all .2s;
 	background-color: var(--background-color);
 	color: var(--theme-color);
 }
+
+.unset { all: unset; }
+.tag {
+	border: 1px solid var(--theme-color);
+	border-radius: .5rem;
+	padding: .5rem 1em;
+}
+
+dd { margin-bottom: 1rem; }
+menu { padding: 0; }
 
 details {
 	border: 1px solid var(--theme-color);
@@ -57,3 +64,124 @@ header > h1 { padding: 1rem; }
 main {
 	padding: 1rem;
 }
+
+/* separate header from sidebar */
+.sidebar {
+	right: 0;
+	position: absolute;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: stretch;
+	align-items: stretch;
+
+	background: transparent;
+}
+
+/* hide checkbox, cover with label */
+input#toggle-categories[type='checkbox'] {
+	display: none;
+}
+label[for='toggle-categories'] {
+	box-sizing: border-box;
+	height: 5rem;
+
+	display: flex;
+	align-items: center;
+
+	border-radius: 0 0 0 1rem;
+	padding: 1rem;
+
+	background: var(--theme-color);
+	color: var(--background-color);
+	font-size: 2rem;
+
+	cursor: pointer;
+
+	z-index: 2;
+}
+
+input#toggle-categories[type='checkbox']:checked ~ button {
+	transition: all .5s;
+	visibility: visible;
+	transform: translateY(0);
+}
+input#toggle-categories[type='checkbox']:checked ~ label {
+	border-radius: 0 0 0 0;
+}
+.sidebar > button {
+	transition: all .5s;
+	transform: translateY(-100vh);
+	grid-column: 1 / span 2;
+
+	border: 1px solid black;
+	padding: 1rem;
+	text-align: left;
+
+	background: var(--theme-color);
+	color: var(--background-color);
+
+	z-index: 1;
+}
+.sidebar > button:last-of-type {
+	border-radius: 0 0 0 1rem;
+	box-shadow: 4px 2px 4px 4px rgba(0,0,0,.4);
+}
+.sidebar > button:hover {
+	transition: all .4s;
+	background: var(--background-color);
+	color: var(--theme-color);
+}
+
+footer {
+	position: relative;
+	bottom: 0;
+
+	margin-top: auto;
+	padding: 1rem;
+
+	background: var(--theme-color);
+	color: var(--background-color);
+}
+footer a {
+	color: inherit;
+}
+
+dialog {
+	border-radius: 1rem;
+	border: 1px solid var(--theme-color);
+	background: var(--background-color);
+	box-shadow: 4px 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+form[method='dialog'] {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
+}
+dialog menu {
+	align-self: end;
+}
+
+form.line-form {
+	display: grid;
+	grid-template-columns: auto 1fr;
+
+	padding: 1rem;
+}
+
+form.line-form label {
+	margin: .75rem 0;
+}
+form.line-form textarea { resize: vertical; }
+form.line-form input, form.line-form textarea {
+	margin: .75rem 0;
+	max-width: 50rem;
+}
+
+input[type='color'] {
+	border: 1px solid black;
+	padding: 0;
+	width: 1rem;
+	height: 1rem;	
+}
+

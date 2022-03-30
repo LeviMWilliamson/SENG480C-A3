@@ -1,8 +1,8 @@
 {
 	"name": "_DEFAULT_TITLE",
 	"short_name": "_DEFAULT_ICON",
-	"theme_color": "_DEFAULT_THEME_COLOR",
-	"background_color": "_DEFAULT_BACKGROUND_COLOR",
+	"theme_color": "black",
+	"background_color": "white",
 	"display": "minimal-ui",
 	"scope": "/",
 	"start_url": "/"

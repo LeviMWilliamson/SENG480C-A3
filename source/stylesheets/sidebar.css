@@ -47,7 +47,7 @@ input#toggle-categories[type='checkbox']:checked ~ label {
 	transform: translateY(-100vh);
 	grid-column: 1 / span 2;
 
-	border: 1px solid _DEFAULT_THEME_COLOR;
+	border: 1px solid black;
 	padding: 1rem;
 	text-align: left;
 

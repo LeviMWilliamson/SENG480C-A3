@@ -6,18 +6,27 @@ const hydrateList = (listElement, listItemTemplate, listData) => {
 
 	// add new children
 	listElement.append( ...listData.map( listItem => {
-		const listItemElement = listItemTemplate.cloneNode(true)
+		const listItemElement = listItemTemplate.content.cloneNode(true)
 		listItemElement
 			.querySelectorAll('[slot]')
-			.forEach( slot => { slot.innerText = listItem[slot.getAttribute('slot')] })
-		listItemElement
-			.querySelectorAll('button')
-			.forEach( bindElement => { bindElement.setAttribute('data-list-item-id', listItem.id) })
+			.forEach( slot => {
+				if(slot.getAttribute('slot') == 'id')
+					slot.dataset.dataListItemId = listItem.id
+				else if(slot instanceof HTMLInputElement)
+					slot.value = listItem[slot.getAttribute('slot')]
+				else
+					slot.innerText = listItem[slot.getAttribute('slot')]
+			})
 		return listItemElement
 	}))
 }
 
+const hydrateForm = (formElement, formData) =>
+	formElement.querySelectorAll('[name]').forEach( input =>
+		input.value = formData[input.name]
+	)
+
 const parseForm = formElement =>
 	[...(new FormData(formElement)).entries()].reduce((accumulated, [key, value]) => ({ ...accumulated, [key]: value }) , {})
 
-export { hydrateList, parseForm }
+export { hydrateList, hydrateForm, parseForm }
