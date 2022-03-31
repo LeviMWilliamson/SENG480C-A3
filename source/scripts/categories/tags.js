@@ -70,14 +70,13 @@ class TagsCategory extends HTMLElement {
 	bindEditTagButtons() {
 		this.querySelectorAll('button.edit').forEach( button => {
 			button.addEventListener('click', event => {
-				this.dialogMode = Dialog.MODES.EDIT
-				this.querySelector('[slot="dialog-caption"]').textContent = `📝 Edit Tag`
-	
 				const { dataListItemId } = event.target.dataset
+				this.tagEdited = dataListItemId
+				this.dialogMode = Dialog.MODES.EDIT
+
+				this.querySelector('[slot="dialog-caption"]').textContent = `📝 Edit Tag`
 				hydrateForm(this.dialogForm, this.tags.find( tag => tag.id == dataListItemId ))
 				this.modifyTagDialog.showModal()
-	
-				this.tagEdited = dataListItemId
 			})
 		})
 	}

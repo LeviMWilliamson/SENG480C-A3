@@ -21,12 +21,25 @@ const hydrateList = (listElement, listItemTemplate, listData) => {
 	}))
 }
 
-const hydrateForm = (formElement, formData) =>
+const hydrateForm = (formElement, formData) => {
+	formElement.querySelectorAll('select[data-category]').forEach( select => {
+		const { category } = select.dataset
+		const categoryData = JSON.parse(localStorage.getItem(category)) || []
+		select.append(...categoryData.map( item => {
+			while(select.firstChild)
+				select.removeChild(select.firstChild)
+			const option = document.createElement('option')
+			option.value = item.id
+			option.innerText = item.name
+			return option
+		}))
+	})
 	formElement.querySelectorAll('[name]').forEach( input =>
-		input.value = formData[input.name]
-	)
+		input.value = formData[input.name] || '')
+}
 
 const parseForm = formElement =>
-	[...(new FormData(formElement)).entries()].reduce((accumulated, [key, value]) => ({ ...accumulated, [key]: value }) , {})
+	[...(new FormData(formElement)).entries()].reduce((accumulated, [key, value]) =>
+		({ ...accumulated, [key]: value }) , {})
 
 export { hydrateList, hydrateForm, parseForm }

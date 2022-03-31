@@ -29,7 +29,7 @@
 				<button data-category='tags'>🔖 Tags</button>
 				<button data-category='items'>📦 Items</button>
 				<button data-category='characters'>🧝‍♂️ Characters</button>
-				<button data-category='creatures'>🐉 Creatures</button>
+				<button data-category='creatures'>🐲 Creatures</button>
 				<button data-category='environments'>🏠 Environments</button>
 				<button data-category='scripts'>📃 Scripts</button>
 				<button data-category='triggers'>🔔 Triggers</button>
@@ -110,6 +110,91 @@
 				<menu>
 					<button slot='id' class='edit'>📝 Edit Tag</button>
 					<button slot='id' class='delete'>❌ Delete Tag</button>
+				</menu>
+			</dd>
+		</template>
+		<template id='characters-template'>
+			<h2>Characters</h2>
+			<button id='create-character-button' class='create'>🧝‍♂️ Create Character</button>
+			<dialog id='modify-character-dialog'>
+				<h3 slot='dialog-caption'></h3>
+				<form id='character-modification-form' method='dialog'>
+					<label for='name'>Name</label>
+					<input type='text' name='name' placeholder='Name' required/>
+
+					<label for='class'>Class</label>
+					<input type='text' name='class' placeholder='Class' required/>
+					
+					<label for='items'>Items</label>
+					<select data-category='items' name='items' multiple required>
+						<option value='' disabled readonly selected>Select Items</option>
+					</select>
+		
+					<label for='description'>Description</label>
+					<textarea name='description' placeholder='Description' required></textarea>
+					<br/>
+					<menu>
+						<button id='confirm-dialog-button' class='dialog' value='default'>🔨 Confirm</button>
+						<button class='dialog' value='cancel' formnovalidate>🚫 Cancel</button>
+					</menu>
+				</form>
+			</dialog>
+			<dl id='characters-list'></dl>
+		</template>
+		<template id='characters-list-item-template'>
+			<dt>
+				<b slot='name'></b>
+				<i slot='class'></i>
+			</dt>
+			<dd>
+				<p slot='description'></p>
+				<menu>
+					<button slot='id' class='edit'>🧝‍♂️ Edit Character</button>
+					<button slot='id' class='delete'>❌ Delete Character</button>
+				</menu>
+			</dd>
+		</template>
+		<template id='creatures-template'>
+			<h2>Creatures</h2>
+			<button id='create-creature-button' class='create'>🐲 Create Creature</button>
+			<dialog id='modify-creature-dialog'>
+				<h3 slot='dialog-caption'></h3>
+				<form id='creature-modification-form' method='dialog'>
+					<label for='name'>Name</label>
+					<input type='text' name='name' placeholder='Name' required/>
+
+					<label for='class'>Class</label>
+					<input type='text' name='class' placeholder='Class' required/>
+		
+					<label for='description'>Description</label>
+					<textarea name='description' placeholder='Description' required></textarea>
+					
+					<label for='items'>Items</label>
+					<select data-category='items' name='items' multiple required>
+						<option value='' disabled readonly selected>Select Items</option>
+					</select>
+
+					<label for='experience'>Experience</label>
+					<input type='number' name='experience' placeholder='Experience' required/>
+					<br/>
+					<menu>
+						<button id='confirm-dialog-button' class='dialog' value='default'>🔨 Confirm</button>
+						<button class='dialog' value='cancel' formnovalidate>🚫 Cancel</button>
+					</menu>
+				</form>
+			</dialog>
+			<dl id='creatures-list'></dl>
+		</template>
+		<template id='creatures-list-item-template'>
+			<dt>
+				<b slot='name'></b>
+				<i slot='class'></i>
+			</dt>
+			<dd>
+				<p slot='description'></p>
+				<menu>
+					<button slot='id' class='edit'>🐉 Edit Creature</button>
+					<button slot='id' class='delete'>❌ Delete Creature</button>
 				</menu>
 			</dd>
 		</template>
