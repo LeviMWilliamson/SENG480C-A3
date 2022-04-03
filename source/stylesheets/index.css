@@ -185,3 +185,13 @@ input[type='color'] {
 	height: 1rem;	
 }
 
+p[slot='description'] {
+	white-space: pre-wrap;
+}
+
+i.highlighted {
+	background: var(--theme-color);
+	color: var(--background-color);
+	padding: .25rem;
+	border-radius: 1rem;
+}

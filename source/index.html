@@ -30,9 +30,10 @@
 				<button data-category='items'>📦 Items</button>
 				<button data-category='characters'>🧝‍♂️ Characters</button>
 				<button data-category='creatures'>🐲 Creatures</button>
-				<button data-category='environments'>🏠 Environments</button>
-				<button data-category='scripts'>📃 Scripts</button>
+				<button data-category='environments'>🌱 Environments</button>
+				<button data-category='encounters'>📃 Encounters</button>
 				<button data-category='triggers'>🔔 Triggers</button>
+				<button data-category='play'>🎮 Play</button>
 			</nav>
 		</header>
 		<main>
@@ -44,8 +45,8 @@
 		<footer>
 			<h2>📜 Paper</h2>
 			<address>
-				<p><a href='mailto:_CONTACT_EMAIL'>_CONTACT_EMAIL</a></p>
-				<p><a href='tel:_CONTACT_PHONE'>_CONTACT_PHONE</a></p>
+				<p><a href='mailto:_CONTACT_EMAIL'>user@example.com</a></p>
+				<p><a href='tel:_CONTACT_PHONE'>+1 123 456 7890</a></p>
 			</address>
 		</footer>
 
@@ -63,7 +64,7 @@
 		
 					<label for='price'>Price</label>
 					<input type='number' name='price' placeholder='Price' required>
-					<button id='create-item-button' class='create' type='button'>📦 Create ItemL</button>
+					<button id='create-item-button' class='create' type='button'>📦 Create Item</button>
 				</form>
 			</details>
 			<dl id='items-list'></dl>
@@ -197,6 +198,139 @@
 					<button slot='id' class='delete'>❌ Delete Creature</button>
 				</menu>
 			</dd>
+		</template>
+		<template id='environments-template'>
+			<h2>Environments</h2>
+			<button id='create-environment-button' class='create'>🌱 Create Environment</button>
+			<dialog id='modify-environment-dialog'>
+				<h3 slot='dialog-caption'></h3>
+				<form id='environment-modification-form' method='dialog'>
+					<label for='name'>Name</label>
+					<input type='text' name='name' placeholder='Name' required/>
+		
+					<label for='location'>Location</label>
+					<input type='text' name='location' placeholder='Location' required/>
+	
+					<label for='description'>Description</label>
+					<textarea name='description' placeholder='Description' required></textarea>
+
+					<label for='creatures'>Creatures</label>
+					<select data-category='creatures' name='creatures' multiple required>
+						<option value='' disabled readonly selected>Select Creatures</option>
+					</select>
+
+					<label for='loot'>Loot</label>
+					<select data-category='items' name='loot' multiple required>
+						<option value='' disabled readonly selected>Select Loot</option>
+					</select>
+					<br/>
+					<menu>
+						<button id='confirm-dialog-button' class='dialog' value='default'>🔨 Confirm</button>
+						<button class='dialog' value='cancel' formnovalidate>🚫 Cancel</button>
+					</menu>
+				</form>
+			</dialog>
+			<dl id='environments-list'></dl>
+		</template>
+		<template id='environments-list-item-template'>
+			<dt>
+				<b slot='name'></b>
+				<i slot='location'></i>
+			</dt>
+			<dd>
+				<p slot='description'></p>
+				<menu>
+					<button slot='id' class='edit'>🌱 Edit Environment</button>
+					<button slot='id' class='delete'>❌ Delete Environment</button>
+				</menu>
+			</dd>
+		</template>
+		<template id='encounters-template'>
+			<h2>Encounters</h2>
+			<button id='create-encounter-button' class='create'>📃 Create Encounter</button>
+			<dialog id='modify-encounter-dialog'>
+				<h3 slot='dialog-caption'></h3>
+					<form id='encounter-modification-form' method='dialog'>
+						<label for='name'>Name</label>
+						<input type='text' name='name' placeholder='Name' required/>
+
+						<label for='description'>Description</label>
+						<textarea name='description' placeholder='Description' required></textarea>
+
+						<label for='tags'>Tags</label>
+						<select data-category='tags' name='tags' multiple required>
+							<option value='' disabled readonly selected>Select Tags</option>
+						</select>
+						<br/>
+						<menu>
+							<button id='confirm-dialog-button' class='dialog' value='default'>🔨 Confirm</button>
+							<button class='dialog' value='cancel' formnovalidate>🚫 Cancel</button>
+						</menu>
+					</form>
+			</dialog>
+			<dl id='encounters-list'></dl>
+		</template>
+		<template id='encounters-list-item-template'>
+			<dt><b slot='name'></b></dt>
+			<dd>
+				<p slot='description'></p>
+				<menu>
+					<button slot='id' class='edit'>📃 Edit Encounter</button>
+					<button slot='id' class='delete'>❌ Delete Encounter</button>
+				</menu>
+			</dd>
+		</template>
+		<template id='encounter-description-highlighted-template'><i
+			class='highlighted'
+			title='{title}'
+		>{name}</i></template>
+		<template id='triggers-template'>
+			<h2>Triggers</h2>
+			<button id='create-trigger-button' class='create'>🔔 Create Trigger</button>
+			<dialog id='modify-trigger-dialog'>
+				<h3 slot='dialog-caption'></h3>
+				<form id='trigger-modification-form' method='dialog'>
+					<label for='name'>Name</label>
+					<input type='text' name='name' placeholder='Name' required/>
+
+					<label for='description'>Description</label>
+					<textarea name='description' placeholder='Description' required></textarea>
+
+					<label for='event'>Event</label>
+					<select name='events' required>
+						<option value='' disabled readonly selected>Select Event</option>
+						<option value='button-a'>Button A Clicked</option>
+						<option value='button-b'>Button B Clicked</option>
+						<option value='button-c'>Button C Clicked</option>
+						<option value='button-D'>Button D Clicked</option>
+					</select>
+
+					<label for='encounter'>Encounter</label>
+					<select data-category='encounters' name='encounter' required>
+						<option value='' disabled readonly selected>Select Encounter</option>
+					</select>
+					<br/>
+					<menu>
+						<button id='confirm-dialog-button' class='dialog' value='default'>🔨 Confirm</button>
+						<button class='dialog' value='cancel' formnovalidate>🚫 Cancel</button>
+					</menu>
+				</form>
+			</dialog>
+			<dl id='triggers-list'></dl>
+		</template>
+		<template id='triggers-list-item-template'>
+			<dt><b slot='name'></b></dt>
+			<dd>
+				<p slot='description'></p>
+				<menu>
+					<button slot='id' class='edit'>🔔 Edit Trigger</button>
+					<button slot='id' class='delete'>❌ Delete Trigger</button>
+				</menu>
+			</dd>
+		</template>
+		<template id='play-template'>
+			<h2>Play</h2>
+			<p>Awaiting events ...</p>
 		</template>
 	</body>
 </html>

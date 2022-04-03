@@ -10,12 +10,13 @@ const hydrateList = (listElement, listItemTemplate, listData) => {
 		listItemElement
 			.querySelectorAll('[slot]')
 			.forEach( slot => {
+				slot.dataset.dataListItemId = listItem.id
 				if(slot.getAttribute('slot') == 'id')
 					slot.dataset.dataListItemId = listItem.id
 				else if(slot instanceof HTMLInputElement)
-					slot.value = listItem[slot.getAttribute('slot')]
+					slot.value = listItem[slot.getAttribute('slot')] || ''
 				else
-					slot.innerText = listItem[slot.getAttribute('slot')]
+					slot.innerText = listItem[slot.getAttribute('slot')] || ''
 			})
 		return listItemElement
 	}))
@@ -26,8 +27,8 @@ const hydrateForm = (formElement, formData) => {
 		const { category } = select.dataset
 		const categoryData = JSON.parse(localStorage.getItem(category)) || []
 		select.append(...categoryData.map( item => {
-			while(select.firstChild)
-				select.removeChild(select.firstChild)
+			while(!select.lastChild.disabled)
+				select.removeChild(select.lastChild)
 			const option = document.createElement('option')
 			option.value = item.id
 			option.innerText = item.name
