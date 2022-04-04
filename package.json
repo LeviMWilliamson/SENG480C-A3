@@ -1,0 +1,11 @@
+{
+	"type": "module",
+	"dependencies": {
+		"express": "^4.17.3",
+		"serialport": "^10.4.0",
+		"ws": "^8.5.0"
+	},
+	"scripts": {
+		"start": "node app.mjs"
+	}
+}
