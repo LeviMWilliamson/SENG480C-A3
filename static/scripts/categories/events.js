@@ -3,7 +3,7 @@ import { hydrateList } from "../utilities.js"
 class EventsCategory extends HTMLElement {
 	constructor() {
 		super()
-		this.append(document.getElementById('play-template').content.cloneNode(true))
+		this.append(document.getElementById('events-template').content.cloneNode(true))
 	}
 
 	get events() {
@@ -15,8 +15,9 @@ class EventsCategory extends HTMLElement {
 
 	bindSocketListener() {
 		this.previousMessage = null
-		this.eventSocket = new WebSocket('ws://localhost:5000/serial')
+		this.eventSocket = new WebSocket('ws://localhost:5000')
 		this.eventSocket.addEventListener('message', ({ data }) => {
+			console.log(data)
 			if(data != this.previousMessage) {
 				this.previousMessage = data
 				const triggers = JSON.parse(localStorage.getItem('triggers')) || []
