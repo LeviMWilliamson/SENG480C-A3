@@ -1,12 +1,8 @@
 import { WebSocketServer } from 'ws'
 import { SerialPort } from 'serialport'
-import Readline from '@serialport/parser-readline'
+import { ReadlineParser } from '@serialport/parser-readline'
 import assert from 'assert/strict'
-SerialPort.list().then(function(ports){
-	ports.forEach(function(port){
-	  console.log("Port: ", port);
-	})
-  });
+import express from 'express'
 
 // check for required environment variables
 assert.notStrictEqual(process.env.SERIAL_PATH, undefined, 'Must provide SERIAL_PATH environment variable.')
@@ -23,8 +19,12 @@ server.on('connection', socket => {
 	})
 })
 
-const serialport = new SerialPort(process.env.SERIAL_PATH, { baudRate: Number(process.env.SERIAL_PORT) })
-const parser = serialport.pipe(new Readline({ delimiter: '\n' }))
+const serialport = new SerialPort({
+	path: process.env.SERIAL_PATH,
+	baudRate: Number(process.env.SERIAL_PORT),
+	//parser: new ReadlineParser({ delimiter: '\n' })
+})
+const parser = serialport.pipe(new ReadlineParser({ delimiter: '\n' }))
 parser.on('data', data => {
 	sockets.forEach( socket => socket.send(data) )
 })
